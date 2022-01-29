@@ -26,11 +26,18 @@ nav4.addEventListener("click", toggleNav);
 nav5.addEventListener("click", toggleNav);
 ```
 
+## Refactor Event Listeners
+```javascript
+const navItems = [nav1, nav2, nav3, nav4, nav5];
+navItems.forEach((nav) => {
+  nav.addEventListener("click", toggleNav);
+});
+```
+
 ## Toggle Navigation Function
 ```javascript
 // Toggle Navigation
 function toggleNav() {
-  const navItems = [nav1, nav2, nav3, nav4, nav5];
   // Toggle: Menu Bars Open/Closed
   menuBars.classList.toggle("change");
   // Toggle: Menu Active
@@ -62,5 +69,17 @@ function toggleNav() {
     nav5.classList.remove("slide-in-5");
     nav5.classList.add("slide-out-5");
   }
+}
+```
+## Refactor Animate In & Out
+```javascript
+const navItems = [nav1, nav2, nav3, nav4, nav5]; <the same const used for Event Listeners>
+function navAnimation(dir1, dir2) {
+  navItems.forEach((nav, index) => {
+    nav.classList.replace(
+      `slide-${dir1}-${index + 1}`,
+      `slide-${dir2}-${index + 1}`
+    );
+  });
 }
 ```
